@@ -1,1 +1,29 @@
-export class Bulletin {}
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+import { Etablissement } from 'src/etablissement/entities/etablissement.entity';
+import { User } from 'src/user/entities/user.entity';
+
+export type BulletinDocument = Bulletin & Document;
+
+@Schema({ timestamps: true })
+export class Bulletin {
+  @Prop({ type: String, required: true })
+  examensDemandes: string;
+
+  @Prop({ type: String, required: true })
+  service: string;
+
+  @Prop({ type: Types.ObjectId, required: true, ref: Etablissement.name })
+  etablissement: Etablissement;
+
+  @Prop({ type: String, required: true })
+  date: string;
+
+  @Prop({ type: String, required: true })
+  numero: string;
+
+  @Prop({ type: Types.ObjectId, required: true, ref: User.name })
+  user: User;
+}
+
+export const BulletinSchema = SchemaFactory.createForClass(Bulletin);

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { UfrService } from './ufr.service';
 import { CreateUfrDto } from './dto/create-ufr.dto';
 import { UpdateUfrDto } from './dto/update-ufr.dto';
@@ -19,16 +27,16 @@ export class UfrController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.ufrService.findOne(+id);
+    return this.ufrService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUfrDto: UpdateUfrDto) {
-    return this.ufrService.update(+id, updateUfrDto);
+    return this.ufrService.update(id, updateUfrDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.ufrService.remove(+id);
+    return this.ufrService.remove(id);
   }
 }

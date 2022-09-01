@@ -1,26 +1,60 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateFormationDto } from './dto/create-formation.dto';
 import { UpdateFormationDto } from './dto/update-formation.dto';
+import { Formation, FormationDocument } from './entities/formation.entity';
 
 @Injectable()
 export class FormationService {
-  create(createFormationDto: CreateFormationDto) {
-    return 'This action adds a new formation';
+  constructor(
+    @InjectModel(Formation.name)
+    private formationModel: Model<FormationDocument>,
+  ) {}
+  async create(createFormationDto: CreateFormationDto): Promise<Formation> {
+    try {
+      const createdFormation = new this.formationModel(createFormationDto);
+      return await createdFormation.save();
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  findAll() {
-    return `This action returns all formation`;
+  async findAll(): Promise<Formation[]> {
+    try {
+      return await this.formationModel.find();
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} formation`;
+  async findOne(id: string): Promise<Formation> {
+    try {
+      return await this.formationModel.findById(id);
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  update(id: number, updateFormationDto: UpdateFormationDto) {
-    return `This action updates a #${id} formation`;
+  async update(
+    id: string,
+    updateFormationDto: UpdateFormationDto,
+  ): Promise<Formation> {
+    try {
+      return await this.formationModel.findByIdAndUpdate(
+        id,
+        updateFormationDto,
+      );
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} formation`;
+  async remove(id: string): Promise<Formation> {
+    try {
+      return await this.formationModel.findByIdAndDelete(id);
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 }
