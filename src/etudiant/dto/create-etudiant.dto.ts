@@ -1,10 +1,12 @@
 import {
   IsEmail,
   IsMongoId,
+  IsObject,
   IsOptional,
   IsPhoneNumber,
   IsString,
 } from 'class-validator';
+import { CreateDossierDto } from 'src/dossier/dto/create-dossier.dto';
 
 export class CreateEtudiantDto {
   @IsString()
@@ -38,4 +40,8 @@ export class CreateEtudiantDto {
 
   @IsMongoId()
   formation: string;
+
+  @IsOptional()
+  @IsObject()
+  dossier: CreateDossierDto;
 }

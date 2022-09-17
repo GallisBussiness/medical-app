@@ -22,9 +22,6 @@ export class Dossier {
 
   @Prop({ type: String })
   antecedant_medicaux: string;
-
-  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name })
-  etudiant: Etudiant;
-}
+ }
 
 export const DossierSchema = SchemaFactory.createForClass(Dossier);

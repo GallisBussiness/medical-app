@@ -22,7 +22,7 @@ export class FormationService {
 
   async findAll(): Promise<Formation[]> {
     try {
-      return await this.formationModel.find();
+      return await this.formationModel.find().populate(['departement','niveau']);
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

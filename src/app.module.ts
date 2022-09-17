@@ -12,7 +12,6 @@ import { FormationModule } from './formation/formation.module';
 import { PrescriptionModule } from './prescription/prescription.module';
 import { EtudiantModule } from './etudiant/etudiant.module';
 import { EtablissementModule } from './etablissement/etablissement.module';
-import { DossierModule } from './dossier/dossier.module';
 import { DepartementModule } from './departement/departement.module';
 import { ConsultationModule } from './consultation/consultation.module';
 import { BulletinModule } from './bulletin/bulletin.module';
@@ -21,6 +20,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { AuthMiddleware } from './auth/auth.middleware';
+import { NiveauModule } from './niveau/niveau.module';
 
 @Module({
   imports: [
@@ -50,10 +50,10 @@ import { AuthMiddleware } from './auth/auth.middleware';
     PrescriptionModule,
     EtudiantModule,
     EtablissementModule,
-    DossierModule,
     DepartementModule,
     ConsultationModule,
     BulletinModule,
+    NiveauModule,
   ],
   controllers: [AppController],
   providers: [AppService],

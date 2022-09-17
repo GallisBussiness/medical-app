@@ -19,16 +19,16 @@ export class DossierController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.dossierService.findOne(+id);
+    return this.dossierService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDossierDto: UpdateDossierDto) {
-    return this.dossierService.update(+id, updateDossierDto);
+    return this.dossierService.update(id, updateDossierDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.dossierService.remove(+id);
+    return this.dossierService.remove(id);
   }
 }

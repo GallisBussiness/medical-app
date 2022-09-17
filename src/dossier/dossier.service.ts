@@ -1,26 +1,53 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateDossierDto } from './dto/create-dossier.dto';
 import { UpdateDossierDto } from './dto/update-dossier.dto';
+import { Dossier, DossierDocument } from './entities/dossier.entity';
 
 @Injectable()
 export class DossierService {
-  create(createDossierDto: CreateDossierDto) {
-    return 'This action adds a new dossier';
+
+  constructor(@InjectModel(Dossier.name) private dossierModel: Model<DossierDocument>){}
+
+  async create(createDossierDto: CreateDossierDto): Promise<Dossier> {
+    try {
+      const createdDossier = new this.dossierModel(createDossierDto);
+      return await createdDossier.save();
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  findAll() {
-    return `This action returns all dossier`;
+  async findAll(): Promise<Dossier[]> {
+    try {
+      return await this.dossierModel.find();
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} dossier`;
+  async findOne(id: string): Promise<Dossier> {
+    try {
+      return await this.dossierModel.findById(id);
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  update(id: number, updateDossierDto: UpdateDossierDto) {
-    return `This action updates a #${id} dossier`;
+  async update(id: string, updateDossierDto: UpdateDossierDto): Promise<Dossier> {
+    try {
+      return await this.dossierModel.findByIdAndUpdate(id, updateDossierDto);
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} dossier`;
+  async remove(id: string): Promise<Dossier> {
+    try {
+      return await this.dossierModel.findByIdAndDelete(id);
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 }

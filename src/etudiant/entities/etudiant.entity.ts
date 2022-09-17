@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Type } from 'class-transformer';
 import { Document, Types } from 'mongoose';
+import { Dossier, DossierSchema } from 'src/dossier/entities/dossier.entity';
 import { Formation } from 'src/formation/entities/formation.entity';
 
 export type EtudiantDocument = Etudiant & Document;
@@ -30,8 +32,12 @@ export class Etudiant {
   @Prop({ type: String })
   telephone: string;
 
-  @Prop({ type: Types.ObjectId, ref: Formation.name })
+  @Prop({ type: Types.ObjectId,required: true, ref: Formation.name })
   formation: Formation;
+
+  @Prop({ type: DossierSchema, default: null })
+  @Type(() => Dossier)
+  dossier: Dossier
 }
 
 export const EtudiantSchema = SchemaFactory.createForClass(Etudiant);
