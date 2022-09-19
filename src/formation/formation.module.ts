@@ -12,5 +12,6 @@ import { Formation, FormationSchema } from './entities/formation.entity';
   ],
   controllers: [FormationController],
   providers: [FormationService],
+  exports: [FormationService]
 })
 export class FormationModule {}

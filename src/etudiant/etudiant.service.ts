@@ -30,7 +30,7 @@ export class EtudiantService {
 
   async findOne(id: string): Promise<Etudiant> {
     try {
-      return await this.etudiantModel.findById(id);
+      return  await this.etudiantModel.findById(id);
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

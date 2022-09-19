@@ -30,7 +30,7 @@ export class FormationService {
 
   async findOne(id: string): Promise<Formation> {
     try {
-      return await this.formationModel.findById(id);
+      return await (await this.formationModel.findById(id)).populate(['departement','niveau']);
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

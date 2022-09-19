@@ -7,6 +7,7 @@ import { Niveau, NiveauSchema } from './entities/niveau.entity';
 @Module({
   imports: [MongooseModule.forFeature([{ name: Niveau.name, schema: NiveauSchema }])],
   controllers: [NiveauController],
-  providers: [NiveauService]
+  providers: [NiveauService],
+  exports: [NiveauService]
 })
 export class NiveauModule {}

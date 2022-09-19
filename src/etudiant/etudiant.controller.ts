@@ -10,10 +10,11 @@ import {
 import { EtudiantService } from './etudiant.service';
 import { CreateEtudiantDto } from './dto/create-etudiant.dto';
 import { UpdateEtudiantDto } from './dto/update-etudiant.dto';
+import { FormationService } from 'src/formation/formation.service';
 
 @Controller('etudiant')
 export class EtudiantController {
-  constructor(private readonly etudiantService: EtudiantService) {}
+  constructor(private readonly etudiantService: EtudiantService,private readonly formationService: FormationService,) {}
 
   @Post()
   create(@Body() createEtudiantDto: CreateEtudiantDto) {
@@ -26,8 +27,11 @@ export class EtudiantController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.etudiantService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const et = await this.etudiantService.findOne(id);
+    const f = await this.formationService.findOne(`${et.formation}`)
+    et.formation = f;
+    return et;
   }
 
   @Patch(':id')
