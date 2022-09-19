@@ -8,7 +8,7 @@ export class CreateDossierDto {
     poids: number;
   
     @IsString()
-    handicap_particuler: string;
+    handicap_particulier: string;
   
     @IsString()
     maladie_chronique: string;

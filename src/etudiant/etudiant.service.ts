@@ -15,13 +15,14 @@ export class EtudiantService {
       const createdEtudiant = new this.etudiantModel(createEtudiantDto);
       return await createdEtudiant.save();
     } catch (error) {
+      console.log(error)
       throw new HttpException(error.message, 500);
     }
   }
 
   async findAll(): Promise<Etudiant[]> {
     try {
-      return await this.etudiantModel.find();
+      return await this.etudiantModel.find().populate('formation');
     } catch (error) {
       throw new HttpException(error.message, 500);
     }
@@ -42,6 +43,7 @@ export class EtudiantService {
     try {
       return await this.etudiantModel.findByIdAndUpdate(id, updateEtudiantDto);
     } catch (error) {
+      console.log(error)
       throw new HttpException(error.message, 500);
     }
   }

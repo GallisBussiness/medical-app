@@ -12,7 +12,7 @@ export class Dossier {
   poids: number;
 
   @Prop({ type: String })
-  handicap_particuler: string;
+  handicap_particulier: string;
 
   @Prop({ type: String })
   maladie_chronique: string;

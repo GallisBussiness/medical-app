@@ -7,6 +7,7 @@ export type FormationDocument = Formation & Document;
 
 @Schema({ timestamps: true })
 export class Formation {
+
   @Prop({ type: String, required: true, ref: Niveau.name })
   niveau: Niveau;
 
