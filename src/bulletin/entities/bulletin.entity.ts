@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { Etablissement } from 'src/etablissement/entities/etablissement.entity';
+import { Etudiant } from 'src/etudiant/entities/etudiant.entity';
 import { User } from 'src/user/entities/user.entity';
 
 export type BulletinDocument = Bulletin & Document;
@@ -21,6 +22,9 @@ export class Bulletin {
 
   @Prop({ type: String, required: true })
   numero: string;
+
+  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name })
+  etudiant: Etudiant;
 
   @Prop({ type: Types.ObjectId, required: true, ref: User.name })
   user: User;

@@ -1,26 +1,51 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable,HttpException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateConsultationDto } from './dto/create-consultation.dto';
 import { UpdateConsultationDto } from './dto/update-consultation.dto';
+import { Consultation, ConsultationDocument } from './entities/consultation.entity';
 
 @Injectable()
 export class ConsultationService {
-  create(createConsultationDto: CreateConsultationDto) {
-    return 'This action adds a new consultation';
+  constructor(@InjectModel(Consultation.name) private consultationModel: Model<ConsultationDocument>) {}
+  async create(createConsultationDto: CreateConsultationDto): Promise<Consultation> {
+    try {
+      const createdConsultation = new this.consultationModel(createConsultationDto);
+      return await createdConsultation.save();
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  findAll() {
-    return `This action returns all consultation`;
+  async findAll(): Promise<Consultation[]> {
+    try {
+      return await this.consultationModel.find();
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} consultation`;
+  async findOne(id: string): Promise<Consultation> {
+    try {
+      return await this.consultationModel.findById(id);
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  update(id: number, updateConsultationDto: UpdateConsultationDto) {
-    return `This action updates a #${id} consultation`;
+  async update(id: string, updateConsultationDto: UpdateConsultationDto): Promise<Consultation> {
+    try {
+      return await this.consultationModel.findByIdAndUpdate(id, updateConsultationDto);
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} consultation`;
+  async remove(id: string): Promise<Consultation> {
+    try {
+      return await this.consultationModel.findByIdAndDelete(id);
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
   }
 }
