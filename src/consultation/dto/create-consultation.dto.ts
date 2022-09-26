@@ -1,51 +1,54 @@
-import { IsMongoId, IsNumber, IsString } from "class-validator";
+import { IsArray, IsMongoId, IsNumber, IsOptional, IsString } from "class-validator";
+import { Traitement } from "src/traitement/entities/traitement.entity";
 
 export class CreateConsultationDto {
-  @IsString()
+  @IsString({message:"date de consultation invalid !"})
   dateDeConsultation: string;
 
   @IsNumber()
   poids: number;
 
-  @IsString()
+  @IsString({message:"tension invalid !"})
   tension: string;
 
-  @IsString()
+  @IsString({message:"temperature invalid !"})
   temperature: string;
 
-  @IsString()
+  @IsString({message:"poule invalid !"})
   poule: string;
 
-  @IsString()
+  @IsString({message:"glycemie invalid !"})
   glycemie: string;
 
-  @IsString()
+  @IsString({message:"corps cetonique invalid !"})
   corps_cetonique: string;
 
-  @IsString()
+  @IsString({message:"autres invalid !"})
   autres: string;
 
-  @IsString()
+  @IsOptional()
+  @IsString({message:"examen invalid !"})
   examen: string;
 
-  @IsString()
-  traitement: string;
+  @IsArray({message:"traitement invalid !"})
+  traitement: Traitement[];
 
-  @IsString()
+  @IsString({message:"bilan invalid !"})
   bilan: string;
 
-  @IsString()
+  @IsString({message:"prochain invalid !"})
   prochain_rv: string;
 
-  @IsString()
+  @IsString({message:"referenece invalid !"})
   reference: string;
 
-  @IsString()
+  @IsString({message:"plainte du jour invalid !"})
   plainte_du_jour: string;
 
-  @IsString()
+  @IsString({message:"type invalid !"})
   type: string;
 
+  @IsOptional()
   @IsNumber()
   numero: string;
 

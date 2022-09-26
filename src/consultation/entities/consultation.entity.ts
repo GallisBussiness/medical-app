@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Type } from 'class-transformer';
 import { Document, Types } from 'mongoose';
 import { Etudiant } from 'src/etudiant/entities/etudiant.entity';
+import { Traitement, TraitementSchema } from 'src/traitement/entities/traitement.entity';
 import { User } from 'src/user/entities/user.entity';
 
 export type ConsultationDocument = Consultation & Document;
@@ -31,11 +33,6 @@ export class Consultation {
   @Prop({ type: String })
   autres: string;
 
-  @Prop({ type: String })
-  examen: string;
-
-  @Prop({ type: String })
-  traitement: string;
 
   @Prop({ type: String })
   bilan: string;
@@ -52,8 +49,10 @@ export class Consultation {
   @Prop({ type: String })
   type: string;
 
-  @Prop({ type: Number })
-  numero: string;
+
+  @Prop({ type: [{type: TraitementSchema}], default: null })
+  @Type(() => Traitement)
+  traitement: Traitement[]
 
   @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name })
   etudiant: Etudiant;
