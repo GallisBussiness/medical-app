@@ -1,7 +1,7 @@
 import {IsMongoId, IsString } from "class-validator";
 
 export class CreateBulletinDto {
-    @IsString()
+  @IsString()
   examensDemandes: string;
 
   @IsString()
@@ -12,9 +12,6 @@ export class CreateBulletinDto {
 
   @IsString()
   date: string;
-
-  @IsString()
-  numero: string;
 
   @IsMongoId()
   etudiant: string;

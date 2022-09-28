@@ -20,8 +20,6 @@ export class Bulletin {
   @Prop({ type: String, required: true })
   date: string;
 
-  @Prop({ type: String, required: true })
-  numero: string;
 
   @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name })
   etudiant: Etudiant;

@@ -17,18 +17,22 @@ export class BulletinController {
     return this.bulletinService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bulletinService.findOne(+id);
+  @Get('byetudiant/:id')
+  findByEtudiant(@Param('id') id: string) {
+    return this.bulletinService.findByEtudiant(id);
   }
 
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.bulletinService.findOne(id);
+  }
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateBulletinDto: UpdateBulletinDto) {
-    return this.bulletinService.update(+id, updateBulletinDto);
+    return this.bulletinService.update(id, updateBulletinDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.bulletinService.remove(+id);
+    return this.bulletinService.remove(id);
   }
 }

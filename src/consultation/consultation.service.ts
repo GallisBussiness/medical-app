@@ -25,6 +25,14 @@ export class ConsultationService {
     }
   }
 
+  async findByEtudiant(id: string): Promise<Consultation[]> {
+    try {
+      return await this.consultationModel.find({etudiant: id});
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
+  }
+
   async findOne(id: string): Promise<Consultation> {
     try {
       return await this.consultationModel.findById(id);

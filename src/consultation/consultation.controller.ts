@@ -17,6 +17,10 @@ export class ConsultationController {
     return this.consultationService.findAll();
   }
 
+  @Get('byetudiant/:id')
+  findByEtudiant(@Param('id') id: string) {
+    return this.consultationService.findByEtudiant(id);
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.consultationService.findOne(id);
