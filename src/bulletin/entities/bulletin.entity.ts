@@ -3,6 +3,7 @@ import { Document, Types } from 'mongoose';
 import { Etablissement } from 'src/etablissement/entities/etablissement.entity';
 import { Etudiant } from 'src/etudiant/entities/etudiant.entity';
 import { User } from 'src/user/entities/user.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 export type BulletinDocument = Bulletin & Document;
 
@@ -20,6 +21,8 @@ export class Bulletin {
   @Prop({ type: String, required: true })
   date: string;
 
+  @Prop({ type: String, required: true, default: uuidv4() })
+  code: string;
 
   @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name })
   etudiant: Etudiant;

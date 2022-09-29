@@ -1,11 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { FormationService } from 'src/formation/formation.service';
 import { ConsultationService } from './consultation.service';
 import { CreateConsultationDto } from './dto/create-consultation.dto';
 import { UpdateConsultationDto } from './dto/update-consultation.dto';
 
 @Controller('consultation')
 export class ConsultationController {
-  constructor(private readonly consultationService: ConsultationService) {}
+  constructor(private readonly consultationService: ConsultationService, private readonly formationService: FormationService) {}
 
   @Post()
   create(@Body() createConsultationDto: CreateConsultationDto) {
@@ -22,8 +23,11 @@ export class ConsultationController {
     return this.consultationService.findByEtudiant(id);
   }
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.consultationService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const consultation =  await this.consultationService.findOne(id);
+    const formation = await this.formationService.findOne(`${consultation?.etudiant?.formation}`)
+    consultation.etudiant.formation = formation;
+    return consultation;
   }
 
   @Patch(':id')

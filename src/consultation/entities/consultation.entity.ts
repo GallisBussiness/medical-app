@@ -4,6 +4,7 @@ import { Document, Types } from 'mongoose';
 import { Etudiant } from 'src/etudiant/entities/etudiant.entity';
 import { Traitement, TraitementSchema } from 'src/traitement/entities/traitement.entity';
 import { User } from 'src/user/entities/user.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 export type ConsultationDocument = Consultation & Document;
 
@@ -42,6 +43,9 @@ export class Consultation {
 
   @Prop({ type: String })
   reference: string;
+
+  @Prop({ type: String, required: true, default: uuidv4() })
+  code: string;
 
   @Prop({ type: String })
   plainte_du_jour: string;
