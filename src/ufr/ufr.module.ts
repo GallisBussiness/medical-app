@@ -8,5 +8,6 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [MongooseModule.forFeature([{ name: Ufr.name, schema: UfrSchema }])],
   controllers: [UfrController],
   providers: [UfrService],
+  exports: [UfrService]
 })
 export class UfrModule {}
