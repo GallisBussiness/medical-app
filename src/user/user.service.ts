@@ -1,6 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { hashFromRequest } from 'src/utils/hash-pass-from-request';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
@@ -11,7 +12,8 @@ export class UserService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     try {
-      const createdUser = new this.userModel(createUserDto);
+      const createUser = await hashFromRequest(createUserDto);
+      const createdUser = new this.userModel(createUser);
       return await createdUser.save();
     } catch (error) {
       throw new HttpException(error.message, 500);
