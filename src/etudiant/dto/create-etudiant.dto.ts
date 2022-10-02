@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsEmail,
   IsMongoId,
   IsObject,
@@ -44,4 +45,8 @@ export class CreateEtudiantDto {
   @IsOptional()
   @IsObject()
   dossier: CreateDossierDto;
+
+  @IsOptional()
+  @IsArray()
+  files: string[];
 }

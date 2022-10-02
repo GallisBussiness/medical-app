@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseInterceptors,
+  UploadedFiles
 } from '@nestjs/common';
 import { EtudiantService } from './etudiant.service';
 import { CreateEtudiantDto } from './dto/create-etudiant.dto';
 import { UpdateEtudiantDto } from './dto/update-etudiant.dto';
 import { FormationService } from 'src/formation/formation.service';
+import { FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('etudiant')
 export class EtudiantController {
@@ -20,6 +23,14 @@ export class EtudiantController {
   create(@Body() createEtudiantDto: CreateEtudiantDto) {
     return this.etudiantService.create(createEtudiantDto);
   }
+
+  @Post('upload/:id')
+@UseInterceptors(FilesInterceptor('files'))
+async uploadFile(@UploadedFiles() files: Array<Express.Multer.File>, @Param('id') id: string) {
+ const etudiant  = await this.etudiantService.findOne(id);
+ const nf = files.map(el => el.filename);
+ return this.etudiantService.update(id,{files: [...etudiant.files,...nf]});
+}
 
   @Get()
   findAll() {
@@ -33,6 +44,8 @@ export class EtudiantController {
     et.formation = f;
     return et;
   }
+
+
 
   @Patch(':id')
   update(

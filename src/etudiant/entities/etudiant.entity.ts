@@ -38,6 +38,9 @@ export class Etudiant {
   @Prop({ type: DossierSchema, default: null })
   @Type(() => Dossier)
   dossier: Dossier
+
+  @Prop({ type: [{type: String}], default: []})
+  files: string[];
 }
 
 export const EtudiantSchema = SchemaFactory.createForClass(Etudiant);
