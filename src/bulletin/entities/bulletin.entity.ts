@@ -15,7 +15,7 @@ export class Bulletin {
   @Prop({ type: String, required: true })
   service: string;
 
-  @Prop({ type: Types.ObjectId, required: true, ref: Etablissement.name })
+  @Prop({ type: Types.ObjectId, required: true, ref: Etablissement.name, autopopulate:true })
   etablissement: Etablissement;
 
   @Prop({ type: String, required: true })
@@ -24,10 +24,10 @@ export class Bulletin {
   @Prop({ type: String, required: true, default: uuidv4() })
   code: string;
 
-  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name })
+  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name, autopulate: true })
   etudiant: Etudiant;
 
-  @Prop({ type: Types.ObjectId, required: true, ref: User.name })
+  @Prop({ type: Types.ObjectId, required: true, ref: User.name, autopopulate:true })
   user: User;
 }
 

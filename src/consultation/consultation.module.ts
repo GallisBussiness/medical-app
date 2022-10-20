@@ -7,7 +7,11 @@ import { FormationModule } from 'src/formation/formation.module';
 
 @Module({
   imports:[
-    MongooseModule.forFeature([{name: Consultation.name, schema: ConsultationSchema}]),
+    MongooseModule.forFeatureAsync([{name: Consultation.name,useFactory: () => {
+      const schema = ConsultationSchema;
+      schema.plugin(require('mongoose-autopopulate'));
+      return schema;
+    },}]),
     FormationModule
   ],
   controllers: [ConsultationController],

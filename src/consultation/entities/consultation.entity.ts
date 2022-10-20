@@ -58,10 +58,10 @@ export class Consultation {
   @Type(() => Traitement)
   traitement: Traitement[]
 
-  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name })
+  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name, autopopulate: true })
   etudiant: Etudiant;
 
-  @Prop({ type: Types.ObjectId, required: true, ref: User.name })
+  @Prop({ type: Types.ObjectId, required: true, ref: User.name, autopopulate: true })
   user: User;
 }
 

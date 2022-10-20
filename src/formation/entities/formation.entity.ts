@@ -8,10 +8,10 @@ export type FormationDocument = Formation & Document;
 @Schema({ timestamps: true })
 export class Formation {
 
-  @Prop({ type: String, required: true, ref: Niveau.name })
+  @Prop({ type: String, required: true, ref: Niveau.name, autopopulate: true })
   niveau: Niveau;
 
-  @Prop({ type: Types.ObjectId,required: true, ref: Departement.name })
+  @Prop({ type: Types.ObjectId,required: true, ref: Departement.name, autopopulate: true })
   departement: Departement;
 }
 

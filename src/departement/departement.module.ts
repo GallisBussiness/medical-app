@@ -6,8 +6,12 @@ import { Departement, DepartementSchema } from './entities/departement.entity';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: Departement.name, schema: DepartementSchema },
+    MongooseModule.forFeatureAsync([
+      { name: Departement.name,useFactory: () => {
+        const schema = DepartementSchema;
+        schema.plugin(require('mongoose-autopopulate'));
+        return schema;
+      }, },
     ]),
   ],
   controllers: [DepartementController],

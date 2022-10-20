@@ -22,8 +22,12 @@ const storage = diskStorage({
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: Etudiant.name, schema: EtudiantSchema },
+    MongooseModule.forFeatureAsync([
+      { name: Etudiant.name,useFactory: () => {
+        const schema = EtudiantSchema;
+        schema.plugin(require('mongoose-autopopulate'));
+        return schema;
+      }, },
     ]),
     FormationModule,
     MulterModule.register({

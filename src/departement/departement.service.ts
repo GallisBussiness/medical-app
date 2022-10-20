@@ -30,7 +30,7 @@ export class DepartementService {
 
   async findAll(): Promise<Departement[]> {
     try {
-      return await this.departementModel.find().populate('ufr');
+      return await this.departementModel.find();
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

@@ -32,7 +32,7 @@ export class Etudiant {
   @Prop({ type: String })
   telephone: string;
 
-  @Prop({ type: Types.ObjectId,required: true, ref: Formation.name })
+  @Prop({ type: Types.ObjectId,required: true, ref: Formation.name, autopopulate: true })
   formation: Formation;
 
   @Prop({ type: DossierSchema, default: null })

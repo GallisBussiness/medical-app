@@ -19,7 +19,7 @@ export class ConsultationService {
 
   async findAll(): Promise<Consultation[]> {
     try {
-      return await this.consultationModel.find().populate(['etudiant','user']);
+      return await this.consultationModel.find();
     } catch (error) {
       throw new HttpException(error.message, 500);
     }
@@ -27,7 +27,7 @@ export class ConsultationService {
 
   async findByEtudiant(id: string): Promise<Consultation[]> {
     try {
-      return await this.consultationModel.find({etudiant: id}).populate(['etudiant','user']);
+      return await this.consultationModel.find({etudiant: id});
     } catch (error) {
       throw new HttpException(error.message, 500);
     }
@@ -35,7 +35,7 @@ export class ConsultationService {
 
   async findOne(id: string): Promise<Consultation> {
     try {
-      return await this.consultationModel.findById(id).populate(['etudiant','user']);
+      return await this.consultationModel.findById(id);
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

@@ -22,7 +22,7 @@ export class EtudiantService {
 
   async findAll(): Promise<Etudiant[]> {
     try {
-      return await this.etudiantModel.find().populate('formation');
+      return await this.etudiantModel.find();
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

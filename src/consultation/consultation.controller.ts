@@ -23,11 +23,12 @@ export class ConsultationController {
     return this.consultationService.findByEtudiant(id);
   }
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const consultation =  await this.consultationService.findOne(id);
-    const formation = await this.formationService.findOne(`${consultation?.etudiant?.formation}`)
-    consultation.etudiant.formation = formation;
-    return consultation;
+  findOne(@Param('id') id: string) {
+    return this.consultationService.findOne(id);
+    // const consultation =  await this.consultationService.findOne(id);
+    // const formation = await this.formationService.findOne(`${consultation?.etudiant?.formation}`)
+    // consultation.etudiant.formation = formation;
+    // return consultation;
   }
 
   @Patch(':id')

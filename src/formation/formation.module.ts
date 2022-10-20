@@ -6,8 +6,12 @@ import { Formation, FormationSchema } from './entities/formation.entity';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: Formation.name, schema: FormationSchema },
+    MongooseModule.forFeatureAsync([
+      { name: Formation.name, useFactory: () => {
+        const schema = FormationSchema;
+        schema.plugin(require('mongoose-autopopulate'));
+        return schema;
+      }, },
     ]),
   ],
   controllers: [FormationController],

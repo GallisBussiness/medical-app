@@ -22,7 +22,7 @@ export class FormationService {
 
   async findAll(): Promise<Formation[]> {
     try {
-      return await this.formationModel.find().populate(['departement','niveau']);
+      return await this.formationModel.find();
     } catch (error) {
       throw new HttpException(error.message, 500);
     }
@@ -30,7 +30,7 @@ export class FormationService {
 
   async findOne(id: string): Promise<Formation> {
     try {
-      return await (await this.formationModel.findById(id)).populate(['departement','niveau']);
+      return await (await this.formationModel.findById(id));
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

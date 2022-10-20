@@ -9,7 +9,7 @@ export class Departement {
   @Prop({ type: String, required: true, unique: true })
   nom: string;
 
-  @Prop({ type: Types.ObjectId, ref: Ufr.name })
+  @Prop({ type: Types.ObjectId, ref: Ufr.name, autopopulate: true })
   ufr: Ufr;
 }
 

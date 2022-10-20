@@ -38,11 +38,12 @@ async uploadFile(@UploadedFiles() files: Array<Express.Multer.File>, @Param('id'
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const et = await this.etudiantService.findOne(id);
-    const f = await this.formationService.findOne(`${et.formation}`)
-    et.formation = f;
-    return et;
+  findOne(@Param('id') id: string) {
+    return this.etudiantService.findOne(id);
+    // const et = await this.etudiantService.findOne(id);
+    // const f = await this.formationService.findOne(`${et.formation}`)
+    // et.formation = f;
+    // return et;
   }
 
 

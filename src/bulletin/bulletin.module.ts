@@ -8,7 +8,11 @@ import { UfrModule } from 'src/ufr/ufr.module';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{name: Bulletin.name, schema: BulletinSchema}]),
+    MongooseModule.forFeatureAsync([{name: Bulletin.name,useFactory: () => {
+      const schema = BulletinSchema;
+      schema.plugin(require('mongoose-autopopulate'));
+      return schema;
+    },}]),
     FormationModule,
     UfrModule
   ],

@@ -39,6 +39,11 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
+  @Post('many')
+  async createMany(@Body() createUserDto: CreateUserDto[]) {
+    return this.userService.createMany(createUserDto);
+  }
+
   @CheckAbility({ action: Action.Read, subject: User })
   @UseGuards(CaslGuard)
   @UseGuards(AuthGuard('jwt'))
