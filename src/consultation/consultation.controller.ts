@@ -25,10 +25,6 @@ export class ConsultationController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.consultationService.findOne(id);
-    // const consultation =  await this.consultationService.findOne(id);
-    // const formation = await this.formationService.findOne(`${consultation?.etudiant?.formation}`)
-    // consultation.etudiant.formation = formation;
-    // return consultation;
   }
 
   @Patch(':id')

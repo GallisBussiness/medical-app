@@ -30,12 +30,6 @@ export class BulletinController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.bulletinService.findOne(id);
-    // const bulletin = await this.bulletinService.findOne(id);
-    // const formation = await this.formationService.findOne(`${bulletin?.etudiant?.formation}`)
-    // const ufr = await this.ufrService.findOne(`${formation?.departement?.ufr}`);
-    // formation.departement.ufr = ufr;
-    // bulletin.etudiant.formation = formation;
-    // return bulletin;
   }
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateBulletinDto: UpdateBulletinDto) {
