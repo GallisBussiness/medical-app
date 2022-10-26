@@ -24,7 +24,7 @@ export class Bulletin {
   @Prop({ type: String, required: true, default: uuidv4() })
   code: string;
 
-  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name, autopulate: true })
+  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name, autopopulate: true })
   etudiant: Etudiant;
 
   @Prop({ type: Types.ObjectId, required: true, ref: User.name, autopopulate:true })
