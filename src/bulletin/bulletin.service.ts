@@ -25,9 +25,9 @@ export class BulletinService {
     }
   }
 
-  async findByEtudiant(id: string): Promise<Bulletin[]> {
+  async findByDossier(id: string): Promise<Bulletin[]> {
     try {
-      return await this.bulletinModel.find({etudiant: id});
+      return await this.bulletinModel.find({dossier: id});
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

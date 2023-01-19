@@ -1,6 +1,4 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { FormationService } from 'src/formation/formation.service';
-import { UfrService } from 'src/ufr/ufr.service';
 import { BulletinService } from './bulletin.service';
 import { CreateBulletinDto } from './dto/create-bulletin.dto';
 import { UpdateBulletinDto } from './dto/update-bulletin.dto';
@@ -8,8 +6,6 @@ import { UpdateBulletinDto } from './dto/update-bulletin.dto';
 @Controller('bulletin')
 export class BulletinController {
   constructor(private readonly bulletinService: BulletinService,
-    private readonly formationService: FormationService,
-    private readonly ufrService: UfrService,
     ) {}
 
   @Post()
@@ -22,9 +18,9 @@ export class BulletinController {
     return this.bulletinService.findAll();
   }
 
-  @Get('byetudiant/:id')
+  @Get('bydossier/:id')
   findByEtudiant(@Param('id') id: string) {
-    return this.bulletinService.findByEtudiant(id);
+    return this.bulletinService.findByDossier(id);
   }
 
   @Get(':id')

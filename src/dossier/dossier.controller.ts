@@ -22,6 +22,11 @@ export class DossierController {
     return this.dossierService.findOne(id);
   }
 
+  @Get('byetudiant/:id')
+  findByEtudiant(@Param('id') id: string) {
+    return this.dossierService.findByEtudiant(id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDossierDto: UpdateDossierDto) {
     return this.dossierService.update(id, updateDossierDto);

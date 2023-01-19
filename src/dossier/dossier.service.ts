@@ -35,6 +35,14 @@ export class DossierService {
     }
   }
 
+  async findByEtudiant(id: string): Promise<Dossier> {
+    try {
+      return await this.dossierModel.findOne({etudiant: id});
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
+  }
+
   async update(id: string, updateDossierDto: UpdateDossierDto): Promise<Dossier> {
     try {
       return await this.dossierModel.findByIdAndUpdate(id, updateDossierDto);

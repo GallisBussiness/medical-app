@@ -7,11 +7,13 @@ import {
   IsPhoneNumber,
   IsString,
 } from 'class-validator';
-import { CreateDossierDto } from 'src/dossier/dto/create-dossier.dto';
 
 export class CreateEtudiantDto {
   @IsString()
   nce: string;
+
+  @IsString()
+  ine: string;
 
   @IsString()
   prenom: string;
@@ -39,14 +41,6 @@ export class CreateEtudiantDto {
   @IsOptional()
   telephone: string;
 
-  @IsMongoId()
+  @IsString()
   formation: string;
-
-  @IsOptional()
-  @IsObject()
-  dossier: CreateDossierDto;
-
-  @IsOptional()
-  @IsArray()
-  files: string[];
 }

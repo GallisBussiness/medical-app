@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { Etablissement } from 'src/etablissement/entities/etablissement.entity';
-import { Etudiant } from 'src/etudiant/entities/etudiant.entity';
+import { Dossier } from 'src/dossier/entities/dossier.entity';
 import { User } from 'src/user/entities/user.entity';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -15,8 +14,8 @@ export class Bulletin {
   @Prop({ type: String, required: true })
   service: string;
 
-  @Prop({ type: Types.ObjectId, required: true, ref: Etablissement.name, autopopulate:true })
-  etablissement: Etablissement;
+  @Prop({ type: String, required: true})
+  etablissement: string;
 
   @Prop({ type: String, required: true })
   date: string;
@@ -24,8 +23,8 @@ export class Bulletin {
   @Prop({ type: String, required: true, default: uuidv4() })
   code: string;
 
-  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name, autopopulate: true })
-  etudiant: Etudiant;
+  @Prop({ type: Types.ObjectId, required: true, ref: Dossier.name, autopopulate: true })
+  dossier: Dossier;
 
   @Prop({ type: Types.ObjectId, required: true, ref: User.name, autopopulate:true })
   user: User;

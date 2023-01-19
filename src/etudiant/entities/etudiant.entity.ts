@@ -1,15 +1,15 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Type } from 'class-transformer';
-import { Document, Types } from 'mongoose';
-import { Dossier, DossierSchema } from 'src/dossier/entities/dossier.entity';
-import { Formation } from 'src/formation/entities/formation.entity';
+import { Document } from 'mongoose';
 
 export type EtudiantDocument = Etudiant & Document;
 
 @Schema({ timestamps: true })
 export class Etudiant {
-  @Prop({ type: String, required: true, unique: true })
+  @Prop({ type: String, unique: true })
   nce: string;
+
+  @Prop({ type: String, required: true, unique: true })
+  ine: string;
 
   @Prop({ type: String, required: true })
   prenom: string;
@@ -29,18 +29,14 @@ export class Etudiant {
   @Prop({ type: String, required: true })
   adresse: string;
 
-  @Prop({ type: String })
+  @Prop({ type: String, required: true })
   telephone: string;
 
-  @Prop({ type: Types.ObjectId,required: true, ref: Formation.name, autopopulate: true })
-  formation: Formation;
+  @Prop({ type: String })
+  email: string;
 
-  @Prop({ type: DossierSchema, default: null })
-  @Type(() => Dossier)
-  dossier: Dossier
-
-  @Prop({ type: [{type: String}], default: []})
-  files: string[];
+  @Prop({ type: String,required: true })
+  formation: string;
 }
 
 export const EtudiantSchema = SchemaFactory.createForClass(Etudiant);

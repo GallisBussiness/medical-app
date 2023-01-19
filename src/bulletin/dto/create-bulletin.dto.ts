@@ -7,14 +7,14 @@ export class CreateBulletinDto {
   @IsString()
   service: string;
 
-  @IsMongoId()
+  @IsString()
   etablissement: string;
 
   @IsString()
   date: string;
 
   @IsMongoId()
-  etudiant: string;
+  dossier: string;
 
   @IsMongoId()
   user: string;

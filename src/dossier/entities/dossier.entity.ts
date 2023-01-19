@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Type } from 'class-transformer';
+import { Document, Types } from 'mongoose';
+import { Etudiant } from 'src/etudiant/entities/etudiant.entity';
 
 export type DossierDocument = Dossier & Document;
 @Schema({ timestamps: true })
@@ -7,8 +9,11 @@ export class Dossier {
   @Prop({ type: String })
   groupe_sanguin: string;
 
-  @Prop({ type: Number })
-  poids: number;
+  @Prop({ type: String })
+  poids: string;
+
+  @Prop({ type: String })
+  taille: string;
 
   @Prop({ type: String })
   handicap_particulier: string;
@@ -20,7 +25,14 @@ export class Dossier {
   allergies: string;
 
   @Prop({ type: String })
-  antecedant_medicaux: string;
+  antecedants_medicaux: string;
+
+  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name, autopopulate: true })
+  @Type(() => Etudiant)
+  etudiant: Etudiant
+
+  // @Prop({ type: [{type: String}], default: []})
+  // files: string[];
  }
 
 export const DossierSchema = SchemaFactory.createForClass(Dossier);

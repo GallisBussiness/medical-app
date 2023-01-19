@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { DepartementService } from './departement.service';
 import { CreateDepartementDto } from './dto/create-departement.dto';
-import { UpdateDepartementDto } from './dto/update-departement.dto';
+import { UpdateDepartementDto } from './dto/update-departement.dto';   
 
 @Controller('departement')
 export class DepartementController {

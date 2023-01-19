@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Type } from 'class-transformer';
 import { Document, Types } from 'mongoose';
-import { Etudiant } from 'src/etudiant/entities/etudiant.entity';
+import { Dossier } from 'src/dossier/entities/dossier.entity';
 import { Traitement, TraitementSchema } from 'src/traitement/entities/traitement.entity';
 import { User } from 'src/user/entities/user.entity';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,8 +13,11 @@ export class Consultation {
   @Prop({ type: String, required: true })
   dateDeConsultation: string;
 
-  @Prop({ type: Number })
-  poids: number;
+  @Prop({ type: String })
+  poids: string;
+
+  @Prop({ type: String })
+  taille: string;
 
   @Prop({ type: String })
   tension: string;
@@ -34,6 +37,11 @@ export class Consultation {
   @Prop({ type: String })
   autres: string;
 
+  @Prop({ type: String })
+  diagnostique: string;
+
+  @Prop({ type: String })
+  examen: string;
 
   @Prop({ type: String })
   bilan: string;
@@ -54,12 +62,11 @@ export class Consultation {
   type: string;
 
 
-  @Prop({ type: [{type: TraitementSchema}], default: null })
-  @Type(() => Traitement)
-  traitement: Traitement[]
+  @Prop({ type: Array, default: [] })
+  traitement: any[]
 
-  @Prop({ type: Types.ObjectId, required: true, ref: Etudiant.name, autopopulate: true })
-  etudiant: Etudiant;
+  @Prop({ type: Types.ObjectId, required: true, ref: Dossier.name, autopopulate: true })
+  dossier: Dossier;
 
   @Prop({ type: Types.ObjectId, required: true, ref: User.name, autopopulate: true })
   user: User;
