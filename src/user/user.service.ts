@@ -20,17 +20,11 @@ export class UserService {
     }
   }
 
-  async createMany(createUserDto: CreateUserDto[]): Promise<User[]> {
-    try {
-       return await this.userModel.insertMany(createUserDto);
-    } catch (error) {
-      throw new HttpException(error.message, 500);
-    }
-  }
-
   async findAll(): Promise<User[]> {
     try {
-      return await this.userModel.find();
+      return await this.userModel.find({}, { password: 0,__v: 0 });
+;
+
     } catch (error) {
       throw new HttpException(error.message, 500);
     }
@@ -38,7 +32,7 @@ export class UserService {
 
   async findOne(id: string): Promise<User> {
     try {
-      return await this.userModel.findById(id);
+      return await this.userModel.findById(id,{password: 0,__v: 0});
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

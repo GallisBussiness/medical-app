@@ -32,17 +32,10 @@ let UserService = class UserService {
             throw new common_1.HttpException(error.message, 500);
         }
     }
-    async createMany(createUserDto) {
-        try {
-            return await this.userModel.insertMany(createUserDto);
-        }
-        catch (error) {
-            throw new common_1.HttpException(error.message, 500);
-        }
-    }
     async findAll() {
         try {
-            return await this.userModel.find();
+            return await this.userModel.find({}, { password: 0, __v: 0 });
+            ;
         }
         catch (error) {
             throw new common_1.HttpException(error.message, 500);
@@ -50,7 +43,7 @@ let UserService = class UserService {
     }
     async findOne(id) {
         try {
-            return await this.userModel.findById(id);
+            return await this.userModel.findById(id, { password: 0, __v: 0 });
         }
         catch (error) {
             throw new common_1.HttpException(error.message, 500);

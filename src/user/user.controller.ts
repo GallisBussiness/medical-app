@@ -7,7 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
-  Req,
+  Req
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -32,17 +32,11 @@ export class UserController {
     return this.authService.login(req.user);
   }
 
-  // @CheckAbility({ action: Action.Create, subject: User })
-  // @UseGuards(AuthGuard('jwt'), CaslGuard)
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
-  @Post('many')
-  async createMany(@Body() createUserDto: CreateUserDto[]) {
-    return this.userService.createMany(createUserDto);
-  }
 
   @CheckAbility({ action: Action.Read, subject: User })
   @UseGuards(CaslGuard)

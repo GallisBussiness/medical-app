@@ -19,11 +19,14 @@ let AuthMiddleware = class AuthMiddleware {
     use(req, res, next) {
         if (req.headers.authorization) {
             const token = req.headers.authorization.split(' ')[1];
-            if (token === 'null')
-                throw new common_1.ForbiddenException('not provide a valid token');
-            const decoded = this.jwtService.decode(token);
-            const { email, prenom, nom, role, _id } = decoded;
-            req.user = { email, prenom, nom, role, _id };
+            try {
+                const decoded = this.jwtService.verify(token);
+                const { email, prenom, nom, role, _id } = decoded;
+                req.user = { email, prenom, nom, role, _id };
+            }
+            catch (error) {
+                throw new common_1.HttpException("Authentication failed", 440);
+            }
         }
         next();
     }

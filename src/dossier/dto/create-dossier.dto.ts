@@ -1,4 +1,4 @@
-import { IsMongoId, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsMongoId, IsString } from 'class-validator';
 export class CreateDossierDto {
     @IsString()
     groupe_sanguin: string;

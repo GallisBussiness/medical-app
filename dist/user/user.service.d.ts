@@ -6,7 +6,6 @@ export declare class UserService {
     private userModel;
     constructor(userModel: Model<UserDocument>);
     create(createUserDto: CreateUserDto): Promise<User>;
-    createMany(createUserDto: CreateUserDto[]): Promise<User[]>;
     findAll(): Promise<User[]>;
     findOne(id: string): Promise<User>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<User>;
