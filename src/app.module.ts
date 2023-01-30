@@ -16,6 +16,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { AuthMiddleware } from './auth/auth.middleware';
 import { DossierModule } from './dossier/dossier.module';
+import { DocModule } from './doc/doc.module';
 
 @Module({
   imports: [
@@ -43,7 +44,8 @@ import { DossierModule } from './dossier/dossier.module';
     EtudiantModule,
     ConsultationModule,
     BulletinModule,
-    DossierModule
+    DossierModule,
+    DocModule
   ],
   controllers: [AppController],
   providers: [AppService],

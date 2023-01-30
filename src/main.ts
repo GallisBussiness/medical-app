@@ -2,6 +2,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { json } from 'express';
 import helmet from 'helmet';
 import { join } from 'path';
 import { AppModule } from './app.module';
@@ -14,6 +15,7 @@ async function bootstrap() {
     prefix: '/uploads/',
   });
   app.use(helmet());
+  app.use(json({limit:'10mb'}));
   app.enableCors({
     origin: '*',
     allowedHeaders:

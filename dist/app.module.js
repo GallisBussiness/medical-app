@@ -20,6 +20,7 @@ const jwt_1 = require("@nestjs/jwt");
 const event_emitter_1 = require("@nestjs/event-emitter");
 const auth_middleware_1 = require("./auth/auth.middleware");
 const dossier_module_1 = require("./dossier/dossier.module");
+const doc_module_1 = require("./doc/doc.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -55,7 +56,8 @@ AppModule = __decorate([
             etudiant_module_1.EtudiantModule,
             consultation_module_1.ConsultationModule,
             bulletin_module_1.BulletinModule,
-            dossier_module_1.DossierModule
+            dossier_module_1.DossierModule,
+            doc_module_1.DocModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

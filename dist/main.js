@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const core_1 = require("@nestjs/core");
+const express_1 = require("express");
 const helmet_1 = require("helmet");
 const path_1 = require("path");
 const app_module_1 = require("./app.module");
@@ -14,6 +15,7 @@ async function bootstrap() {
         prefix: '/uploads/',
     });
     app.use((0, helmet_1.default)());
+    app.use((0, express_1.json)({ limit: '10mb' }));
     app.enableCors({
         origin: '*',
         allowedHeaders: 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe,Authorization',
