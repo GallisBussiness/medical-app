@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, UploadedFiles } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { DocService } from './doc.service';
 import { CreateDocDto } from './dto/create-doc.dto';
@@ -10,10 +10,10 @@ export class DocController {
 
   
   @Post()
-  @UseInterceptors(FileInterceptor('doc'))
-  create(@UploadedFile() file: Express.Multer.File,@Body() createDocDto: CreateDocDto) {
-    createDocDto.nom = file.filename;
-    return this.docService.create(createDocDto);
+  @UseInterceptors(FileInterceptor('docs'))
+  create(@UploadedFiles() files: Array<Express.Multer.File>,@Body() createDocDto: CreateDocDto) {
+    const dtos = files.map(f => ({...createDocDto,name: f.filename}));
+    return this.docService.createMany(dtos);
   }
 
   @Get()

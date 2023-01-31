@@ -18,6 +18,15 @@ export class DocService {
     }
   }
 
+  async createMany(dtos: CreateDocDto[]): Promise<Doc> {
+    try {
+      const createdDoc = new this.DocModel(dtos);
+      return await createdDoc.save();
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
+  }
+
   async findAll(): Promise<Doc[]> {
     try {
       return await this.DocModel.find();

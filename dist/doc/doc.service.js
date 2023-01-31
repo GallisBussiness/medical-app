@@ -30,6 +30,15 @@ let DocService = class DocService {
             throw new common_1.HttpException(error.message, 500);
         }
     }
+    async createMany(dtos) {
+        try {
+            const createdDoc = new this.DocModel(dtos);
+            return await createdDoc.save();
+        }
+        catch (error) {
+            throw new common_1.HttpException(error.message, 500);
+        }
+    }
     async findAll() {
         try {
             return await this.DocModel.find();
