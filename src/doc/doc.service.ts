@@ -18,10 +18,10 @@ export class DocService {
     }
   }
 
-  async createMany(dtos: CreateDocDto[]): Promise<Doc> {
+  async createMany(dtos: CreateDocDto[]): Promise<Doc[]> {
     try {
-      const createdDoc = new this.DocModel(dtos);
-      return await createdDoc.save();
+      const createdDoc = await this.DocModel.insertMany(dtos);
+      return createdDoc;
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

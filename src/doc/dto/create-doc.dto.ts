@@ -4,9 +4,6 @@ export class CreateDocDto {
     @IsString()
     nom: string;
 
-    @IsString()
-    type: string;
-
     @IsMongoId()
     dossier: string;
 }

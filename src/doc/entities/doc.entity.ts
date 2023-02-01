@@ -9,9 +9,6 @@ export class Doc {
     @Prop({type: String, required: true})
     nom: string;
 
-    @Prop({type: String, required: true})
-    type: string;
-
     @Prop({type: Types.ObjectId, ref: Dossier.name, required: true, autopopulate: true})
     dossier: string;
 }

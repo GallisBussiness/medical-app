@@ -18,10 +18,6 @@ __decorate([
     __metadata("design:type", String)
 ], CreateDocDto.prototype, "nom", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateDocDto.prototype, "type", void 0);
-__decorate([
     (0, class_validator_1.IsMongoId)(),
     __metadata("design:type", String)
 ], CreateDocDto.prototype, "dossier", void 0);

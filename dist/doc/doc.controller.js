@@ -23,7 +23,7 @@ let DocController = class DocController {
         this.docService = docService;
     }
     create(files, createDocDto) {
-        const dtos = files.map(f => (Object.assign(Object.assign({}, createDocDto), { name: f.filename })));
+        const dtos = files.map(f => (Object.assign(Object.assign({}, createDocDto), { nom: f.filename })));
         return this.docService.createMany(dtos);
     }
     findAll() {

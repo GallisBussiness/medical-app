@@ -5,7 +5,7 @@ import { UpdateDocDto } from './dto/update-doc.dto';
 export declare class DocController {
     private readonly docService;
     constructor(docService: DocService);
-    create(files: Array<Express.Multer.File>, createDocDto: CreateDocDto): Promise<import("./entities/doc.entity").Doc>;
+    create(files: Array<Express.Multer.File>, createDocDto: CreateDocDto): Promise<import("./entities/doc.entity").Doc[]>;
     findAll(): Promise<import("./entities/doc.entity").Doc[]>;
     findByDossier(id: string): Promise<import("./entities/doc.entity").Doc>;
     findOne(id: string): Promise<import("./entities/doc.entity").Doc>;

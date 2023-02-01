@@ -32,8 +32,8 @@ let DocService = class DocService {
     }
     async createMany(dtos) {
         try {
-            const createdDoc = new this.DocModel(dtos);
-            return await createdDoc.save();
+            const createdDoc = await this.DocModel.insertMany(dtos);
+            return createdDoc;
         }
         catch (error) {
             throw new common_1.HttpException(error.message, 500);
