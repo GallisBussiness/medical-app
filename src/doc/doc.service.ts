@@ -18,15 +18,6 @@ export class DocService {
     }
   }
 
-  async createMany(dtos: CreateDocDto[]): Promise<Doc[]> {
-    try {
-      const createdDoc = await this.DocModel.insertMany(dtos);
-      return createdDoc;
-    } catch (error) {
-      throw new HttpException(error.message, 500);
-    }
-  }
-
   async findAll(): Promise<Doc[]> {
     try {
       return await this.DocModel.find();
@@ -43,9 +34,9 @@ export class DocService {
     }
   }
 
-  async findByDossier(id: string): Promise<Doc> {
+  async findByDossier(id: string): Promise<Doc[]> {
     try {
-      return await this.DocModel.findOne({dossier: id});
+      return await this.DocModel.find({dossier: id});
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

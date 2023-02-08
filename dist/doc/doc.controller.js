@@ -22,9 +22,9 @@ let DocController = class DocController {
     constructor(docService) {
         this.docService = docService;
     }
-    create(files, createDocDto) {
-        const dtos = files.map(f => (Object.assign(Object.assign({}, createDocDto), { nom: f.filename })));
-        return this.docService.createMany(dtos);
+    create(file, createDocDto) {
+        createDocDto.nom = file.filename;
+        return this.docService.create(createDocDto);
     }
     findAll() {
         return this.docService.findAll();
@@ -44,11 +44,11 @@ let DocController = class DocController {
 };
 __decorate([
     (0, common_1.Post)(),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('docs')),
-    __param(0, (0, common_1.UploadedFiles)()),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('doc')),
+    __param(0, (0, common_1.UploadedFile)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Array, create_doc_dto_1.CreateDocDto]),
+    __metadata("design:paramtypes", [Object, create_doc_dto_1.CreateDocDto]),
     __metadata("design:returntype", void 0)
 ], DocController.prototype, "create", null);
 __decorate([

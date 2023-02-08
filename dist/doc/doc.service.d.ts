@@ -6,10 +6,9 @@ export declare class DocService {
     private DocModel;
     constructor(DocModel: Model<DocDocument>);
     create(createDocDto: CreateDocDto): Promise<Doc>;
-    createMany(dtos: CreateDocDto[]): Promise<Doc[]>;
     findAll(): Promise<Doc[]>;
     findOne(id: string): Promise<Doc>;
-    findByDossier(id: string): Promise<Doc>;
+    findByDossier(id: string): Promise<Doc[]>;
     update(id: string, updateDocDto: UpdateDocDto): Promise<Doc>;
     remove(id: string): Promise<Doc>;
 }

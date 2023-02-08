@@ -20,6 +20,10 @@ __decorate([
     __metadata("design:type", String)
 ], Doc.prototype, "nom", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ type: String, required: true }),
+    __metadata("design:type", String)
+], Doc.prototype, "type", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, ref: dossier_entity_1.Dossier.name, required: true, autopopulate: true }),
     __metadata("design:type", String)
 ], Doc.prototype, "dossier", void 0);

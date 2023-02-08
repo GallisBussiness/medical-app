@@ -30,15 +30,6 @@ let DocService = class DocService {
             throw new common_1.HttpException(error.message, 500);
         }
     }
-    async createMany(dtos) {
-        try {
-            const createdDoc = await this.DocModel.insertMany(dtos);
-            return createdDoc;
-        }
-        catch (error) {
-            throw new common_1.HttpException(error.message, 500);
-        }
-    }
     async findAll() {
         try {
             return await this.DocModel.find();
@@ -57,7 +48,7 @@ let DocService = class DocService {
     }
     async findByDossier(id) {
         try {
-            return await this.DocModel.findOne({ dossier: id });
+            return await this.DocModel.find({ dossier: id });
         }
         catch (error) {
             throw new common_1.HttpException(error.message, 500);

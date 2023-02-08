@@ -26,6 +26,7 @@ import { Document } from "mongoose";
 export declare type DocDocument = Doc & Document;
 export declare class Doc {
     nom: string;
+    type: string;
     dossier: string;
 }
 export declare const DocSchema: import("mongoose").Schema<Doc, import("mongoose").Model<Doc, any, any, any, any>, {}, {}, {}, {}, "type", Doc>;
