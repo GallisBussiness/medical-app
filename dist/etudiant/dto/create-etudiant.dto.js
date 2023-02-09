@@ -20,7 +20,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateEtudiantDto.prototype, "ine", void 0);
+], CreateEtudiantDto.prototype, "cni", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)

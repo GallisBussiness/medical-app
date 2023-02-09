@@ -13,7 +13,7 @@ export class CreateEtudiantDto {
   nce: string;
 
   @IsString()
-  ine: string;
+  cni: string;
 
   @IsString()
   prenom: string;

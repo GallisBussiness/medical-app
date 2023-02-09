@@ -26,7 +26,7 @@ import { Document } from 'mongoose';
 export declare type EtudiantDocument = Etudiant & Document;
 export declare class Etudiant {
     nce: string;
-    ine: string;
+    cni: string;
     prenom: string;
     nom: string;
     sexe: string;

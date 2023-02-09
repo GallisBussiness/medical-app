@@ -9,7 +9,7 @@ export class Etudiant {
   nce: string;
 
   @Prop({ type: String, required: true, unique: true })
-  ine: string;
+  cni: string;
 
   @Prop({ type: String, required: true })
   prenom: string;

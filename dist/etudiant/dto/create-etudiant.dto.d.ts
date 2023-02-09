@@ -1,6 +1,6 @@
 export declare class CreateEtudiantDto {
     nce: string;
-    ine: string;
+    cni: string;
     prenom: string;
     nom: string;
     sexe: string;
