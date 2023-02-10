@@ -27,8 +27,8 @@ async function bootstrap() {
         forbidNonWhitelisted: true,
         disableErrorMessages: process.env.NODE_ENV == 'production',
     }));
-    app.useGlobalFilters(new http_exection_filter_1.HttpExceptionFilter());
     const config = app.get(config_1.ConfigService);
+    app.useGlobalFilters(new http_exection_filter_1.HttpExceptionFilter());
     const port = config.get('NEST_PORT');
     await app.listen(port, () => logger.log(`App started at port: ${port}`));
 }
