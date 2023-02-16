@@ -7,7 +7,6 @@ const express_1 = require("express");
 const helmet_1 = require("helmet");
 const path_1 = require("path");
 const app_module_1 = require("./app.module");
-const http_exection_filter_1 = require("./http-exection-filter");
 const logger = new common_1.Logger('Main');
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
@@ -28,7 +27,6 @@ async function bootstrap() {
         disableErrorMessages: process.env.NODE_ENV == 'production',
     }));
     const config = app.get(config_1.ConfigService);
-    app.useGlobalFilters(new http_exection_filter_1.HttpExceptionFilter());
     const port = config.get('NEST_PORT');
     await app.listen(port, () => logger.log(`App started at port: ${port}`));
 }

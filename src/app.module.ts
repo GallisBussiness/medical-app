@@ -21,7 +21,7 @@ import { DocModule } from './doc/doc.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, // no need to import into other modules
+      isGlobal: true, 
     }),
     MongooseModule.forRootAsync({
       useFactory: async (config: ConfigService) => ({

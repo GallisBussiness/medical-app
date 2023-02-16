@@ -6,6 +6,7 @@ import { json } from 'express';
 import helmet from 'helmet';
 import { join } from 'path';
 import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './http-exection-filter';
 
 const logger = new Logger('Main');
 async function bootstrap() {
@@ -29,8 +30,9 @@ async function bootstrap() {
       disableErrorMessages: process.env.NODE_ENV == 'production',
     }),
   );
+  
   const config = app.get(ConfigService);
-
+  
   const port = config.get('NEST_PORT');
   await app.listen(port, () => logger.log(`App started at port: ${port}`));
 }

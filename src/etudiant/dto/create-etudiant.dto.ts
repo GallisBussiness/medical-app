@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 
 export class CreateEtudiantDto {
+  @IsOptional()
   @IsString()
   nce: string;
 
