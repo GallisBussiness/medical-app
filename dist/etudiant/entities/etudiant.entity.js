@@ -14,7 +14,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 let Etudiant = class Etudiant {
 };
 __decorate([
-    (0, mongoose_1.Prop)({ type: String, unique: true }),
+    (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
 ], Etudiant.prototype, "nce", void 0);
 __decorate([

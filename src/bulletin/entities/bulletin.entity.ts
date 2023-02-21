@@ -8,16 +8,16 @@ export type BulletinDocument = Bulletin & Document;
 
 @Schema({ timestamps: true })
 export class Bulletin {
-  @Prop({ type: String, required: true })
+  @Prop({ type: String })
   examensDemandes: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String })
   service: string;
 
-  @Prop({ type: String, required: true})
+  @Prop({ type: String})
   etablissement: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String })
   date: string;
 
   @Prop({ type: String, required: true, default: uuidv4() })

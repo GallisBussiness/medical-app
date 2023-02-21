@@ -5,7 +5,7 @@ export type EtudiantDocument = Etudiant & Document;
 
 @Schema({ timestamps: true })
 export class Etudiant {
-  @Prop({ type: String, unique: true })
+  @Prop({ type: String })
   nce: string;
 
   @Prop({ type: String, required: true, unique: true })

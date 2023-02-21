@@ -16,6 +16,7 @@ export class CreateEtudiantDto {
   @IsString()
   cni: string;
 
+  
   @IsString()
   prenom: string;
 
@@ -34,8 +35,8 @@ export class CreateEtudiantDto {
   @IsString()
   adresse: string;
 
-  @IsEmail()
   @IsOptional()
+  @IsEmail()
   email: string;
 
   @IsPhoneNumber('SN')

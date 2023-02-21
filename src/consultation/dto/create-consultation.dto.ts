@@ -5,12 +5,15 @@ export class CreateConsultationDto {
   @IsString({message:"date de consultation invalid !"})
   dateDeConsultation: string;
 
+  @IsOptional()
   @IsString()
   poids: number;
 
+  @IsOptional()
   @IsString()
   taille: number;
 
+  @IsOptional()
   @IsString({message:"tension invalid !"})
   tension: string;
 
@@ -38,6 +41,7 @@ export class CreateConsultationDto {
   @IsString({message:"examen invalid !"})
   examen: string;
 
+  @IsOptional()
   @IsArray({message:"traitement invalid !"})
   traitement: any[];
 

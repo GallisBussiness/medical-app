@@ -18,19 +18,19 @@ const uuid_1 = require("uuid");
 let Bulletin = class Bulletin {
 };
 __decorate([
-    (0, mongoose_1.Prop)({ type: String, required: true }),
+    (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
 ], Bulletin.prototype, "examensDemandes", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: String, required: true }),
+    (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
 ], Bulletin.prototype, "service", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: String, required: true }),
+    (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
 ], Bulletin.prototype, "etablissement", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: String, required: true }),
+    (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
 ], Bulletin.prototype, "date", void 0);
 __decorate([

@@ -18,14 +18,17 @@ __decorate([
     __metadata("design:type", String)
 ], CreateConsultationDto.prototype, "dateDeConsultation", void 0);
 __decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", Number)
 ], CreateConsultationDto.prototype, "poids", void 0);
 __decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", Number)
 ], CreateConsultationDto.prototype, "taille", void 0);
 __decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)({ message: "tension invalid !" }),
     __metadata("design:type", String)
 ], CreateConsultationDto.prototype, "tension", void 0);
@@ -60,6 +63,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateConsultationDto.prototype, "examen", void 0);
 __decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsArray)({ message: "traitement invalid !" }),
     __metadata("design:type", Array)
 ], CreateConsultationDto.prototype, "traitement", void 0);
