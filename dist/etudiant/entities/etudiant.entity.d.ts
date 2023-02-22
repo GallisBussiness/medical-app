@@ -36,5 +36,6 @@ export declare class Etudiant {
     telephone: string;
     email: string;
     formation: string;
+    user: string;
 }
 export declare const EtudiantSchema: import("mongoose").Schema<Etudiant, import("mongoose").Model<Etudiant, any, any, any, any>, {}, {}, {}, {}, "type", Etudiant>;

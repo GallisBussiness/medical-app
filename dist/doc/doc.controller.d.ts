@@ -9,6 +9,6 @@ export declare class DocController {
     findAll(): Promise<import("./entities/doc.entity").Doc[]>;
     findByDossier(id: string): Promise<import("./entities/doc.entity").Doc[]>;
     findOne(id: string): Promise<import("./entities/doc.entity").Doc>;
-    update(id: string, updateDocDto: UpdateDocDto): Promise<import("./entities/doc.entity").Doc>;
+    update(file: Express.Multer.File, id: string, updateDocDto: UpdateDocDto): Promise<import("./entities/doc.entity").Doc>;
     remove(id: string): Promise<import("./entities/doc.entity").Doc>;
 }

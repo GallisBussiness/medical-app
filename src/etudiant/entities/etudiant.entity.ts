@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
+import { User } from 'src/user/entities/user.entity';
 
 export type EtudiantDocument = Etudiant & Document;
 
@@ -37,6 +38,9 @@ export class Etudiant {
 
   @Prop({ type: String,required: true })
   formation: string;
+
+  @Prop({ type: Types.ObjectId, ref: User.name, autopopulate: true })
+  user: string;
 }
 
 export const EtudiantSchema = SchemaFactory.createForClass(Etudiant);

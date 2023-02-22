@@ -10,4 +10,5 @@ export declare class CreateEtudiantDto {
     email: string;
     telephone: string;
     formation: string;
+    user: string;
 }

@@ -60,5 +60,9 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateEtudiantDto.prototype, "formation", void 0);
+__decorate([
+    (0, class_validator_1.IsMongoId)(),
+    __metadata("design:type", String)
+], CreateEtudiantDto.prototype, "user", void 0);
 exports.CreateEtudiantDto = CreateEtudiantDto;
 //# sourceMappingURL=create-etudiant.dto.js.map

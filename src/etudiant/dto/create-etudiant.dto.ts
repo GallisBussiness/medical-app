@@ -45,4 +45,7 @@ export class CreateEtudiantDto {
 
   @IsString()
   formation: string;
+
+  @IsMongoId()
+  user: string;
 }

@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { unlinkSync } from 'fs';
 import { DocService } from './doc.service';
 import { CreateDocDto } from './dto/create-doc.dto';
 import { UpdateDocDto } from './dto/update-doc.dto';
@@ -32,12 +33,21 @@ export class DocController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDocDto: UpdateDocDto) {
-    return this.docService.update(id, updateDocDto);
+  @UseInterceptors(FileInterceptor('doc'))
+  async update(@UploadedFile() file: Express.Multer.File,@Param('id') id: string, @Body() updateDocDto: UpdateDocDto) {
+    updateDocDto.nom  = file.filename;
+    const doc = await this.docService.update(id, updateDocDto);
+    if(doc)
+    unlinkSync(`uploads/docs/${doc.nom}`);
+
+    return doc;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.docService.remove(id);
+  async remove(@Param('id') id: string) {
+    const doc = await this.docService.remove(id);
+    if(doc)
+    unlinkSync(`uploads/docs/${doc.nom}`);
+    return doc;
   }
 }

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DocController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
+const fs_1 = require("fs");
 const doc_service_1 = require("./doc.service");
 const create_doc_dto_1 = require("./dto/create-doc.dto");
 const update_doc_dto_1 = require("./dto/update-doc.dto");
@@ -35,11 +36,18 @@ let DocController = class DocController {
     findOne(id) {
         return this.docService.findOne(id);
     }
-    update(id, updateDocDto) {
-        return this.docService.update(id, updateDocDto);
+    async update(file, id, updateDocDto) {
+        updateDocDto.nom = file.filename;
+        const doc = await this.docService.update(id, updateDocDto);
+        if (doc)
+            (0, fs_1.unlinkSync)(`uploads/docs/${doc.nom}`);
+        return doc;
     }
-    remove(id) {
-        return this.docService.remove(id);
+    async remove(id) {
+        const doc = await this.docService.remove(id);
+        if (doc)
+            (0, fs_1.unlinkSync)(`uploads/docs/${doc.nom}`);
+        return doc;
     }
 };
 __decorate([
@@ -73,18 +81,20 @@ __decorate([
 ], DocController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('doc')),
+    __param(0, (0, common_1.UploadedFile)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_doc_dto_1.UpdateDocDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Object, String, update_doc_dto_1.UpdateDocDto]),
+    __metadata("design:returntype", Promise)
 ], DocController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], DocController.prototype, "remove", null);
 DocController = __decorate([
     (0, common_1.Controller)('doc'),
