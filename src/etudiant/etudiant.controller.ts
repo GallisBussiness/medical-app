@@ -20,7 +20,6 @@ export class EtudiantController {
     return this.etudiantService.create(createEtudiantDto);
   }
 
-
   @Get()
   findAll() {
     return this.etudiantService.findAll();
@@ -30,8 +29,6 @@ export class EtudiantController {
   findOne(@Param('id') id: string) {
     return this.etudiantService.findOne(id);
   }
-
-
 
   @Patch(':id')
   update(

@@ -1,5 +1,6 @@
 import {
   IsArray,
+  IsBoolean,
   IsEmail,
   IsMongoId,
   IsObject,
@@ -45,6 +46,10 @@ export class CreateEtudiantDto {
 
   @IsString()
   formation: string;
+
+  @IsOptional()
+  @IsBoolean()
+  apte: boolean;
 
   @IsMongoId()
   user: string;

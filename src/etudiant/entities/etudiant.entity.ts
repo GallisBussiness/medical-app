@@ -36,6 +36,9 @@ export class Etudiant {
   @Prop({ type: String })
   email: string;
 
+  @Prop({ type: Boolean, default: false })
+  apte: boolean;
+
   @Prop({ type: String,required: true })
   formation: string;
 
