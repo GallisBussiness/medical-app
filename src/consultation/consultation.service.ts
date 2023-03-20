@@ -19,7 +19,7 @@ export class ConsultationService {
 
   async findAll(): Promise<Consultation[]> {
     try {
-      return await this.consultationModel.find();
+      return await this.consultationModel.find().sort({ createdAt: -1 });
     } catch (error) {
       throw new HttpException(error.message, 500);
     }
@@ -27,7 +27,7 @@ export class ConsultationService {
 
   async findByDossier(id: string): Promise<Consultation[]> {
     try {
-      return await this.consultationModel.find({dossier: id});
+      return await this.consultationModel.find({dossier: id}).sort({ createdAt: -1 });
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

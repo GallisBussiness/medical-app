@@ -9,6 +9,7 @@ import { Bulletin, BulletinSchema } from './entities/bulletin.entity';
     MongooseModule.forFeatureAsync([{name: Bulletin.name,useFactory: () => {
       const schema = BulletinSchema;
       schema.plugin(require('mongoose-autopopulate'));
+      schema.plugin(require('mongoose-serial'), { field:"numero"});
       return schema;
     },}])
   ],

@@ -8,6 +8,9 @@ export type BulletinDocument = Bulletin & Document;
 
 @Schema({ timestamps: true })
 export class Bulletin {
+  @Prop({type: String})
+  numero:string;
+  
   @Prop({ type: String })
   examensDemandes: string;
 

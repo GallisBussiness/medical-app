@@ -30,6 +30,11 @@ export class EtudiantController {
     return this.etudiantService.findOne(id);
   }
 
+  @Post('byid')
+  findById(@Body() searchDTO : { id: string }) {
+    return this.etudiantService.findById(searchDTO.id);
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,

@@ -19,7 +19,7 @@ export class BulletinService {
 
   async findAll(): Promise<Bulletin[]> {
     try {
-      return await this.bulletinModel.find();
+      return await this.bulletinModel.find().sort({ createdAt: -1 });
     } catch (error) {
       throw new HttpException(error.message, 500);
     }
@@ -27,7 +27,7 @@ export class BulletinService {
 
   async findByDossier(id: string): Promise<Bulletin[]> {
     try {
-      return await this.bulletinModel.find({dossier: id});
+      return await this.bulletinModel.find({dossier: id}).sort({ createdAt: -1 });
     } catch (error) {
       throw new HttpException(error.message, 500);
     }

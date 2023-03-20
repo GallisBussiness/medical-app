@@ -22,7 +22,7 @@ export class EtudiantService {
 
   async findAll(): Promise<Etudiant[]> {
     try {
-      return await this.etudiantModel.find();
+      return await this.etudiantModel.find().sort({ createdAt: -1 });
     } catch (error) {
       throw new HttpException(error.message, 500);
     }
@@ -31,6 +31,14 @@ export class EtudiantService {
   async findOne(id: string): Promise<Etudiant> {
     try {
       return  await this.etudiantModel.findById(id);
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
+  }
+
+  async findById(id: string): Promise<Etudiant> {
+    try {
+      return  await this.etudiantModel.findOne({$or: [{nce: id}, {cni: id}, {telephone: id}]});
     } catch (error) {
       throw new HttpException(error.message, 500);
     }
