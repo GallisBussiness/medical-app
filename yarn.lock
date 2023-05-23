@@ -3795,6 +3795,11 @@ mongoose-autopopulate@^0.16.1:
   resolved "https://registry.yarnpkg.com/mongoose-autopopulate/-/mongoose-autopopulate-0.16.1.tgz#69e12506dcfcaead92d276f773dd66dd6a287737"
   integrity sha512-/wWogmjgAbry7E0u99E6ulwLc522ubQRNdbLdsSJEQ10DBFUOMOzNHMsNs0NhILps+vRm9xcqxSAsqav6APviQ==
 
+mongoose-paginate-v2@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/mongoose-paginate-v2/-/mongoose-paginate-v2-1.7.1.tgz#0b390f5eb8e5dca55ffcb1fd7b4d8078636cb8f1"
+  integrity sha512-J8DJw3zRXcXOKoZv+RvO9tt5HotRnbo2iCR3lke+TtsQsYwQvbY3EgUkPqZXw6qCX2IByvXrW5SGNdAB0od/Cw==
+
 mongoose-serial@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/mongoose-serial/-/mongoose-serial-1.0.4.tgz#5676716573ceb261c8d80d4fb8399fa3dd045e75"

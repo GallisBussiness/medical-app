@@ -22,6 +22,7 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
+/// <reference types="mongoose-paginate-v2" />
 import { Document } from 'mongoose';
 import { Etudiant } from 'src/etudiant/entities/etudiant.entity';
 export declare type DossierDocument = Dossier & Document;

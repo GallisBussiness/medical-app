@@ -22,6 +22,7 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
+/// <reference types="mongoose-paginate-v2" />
 import { Document } from 'mongoose';
 import { Ufr } from 'src/ufr/entities/ufr.entity';
 export declare type DepartementDocument = Departement & Document;

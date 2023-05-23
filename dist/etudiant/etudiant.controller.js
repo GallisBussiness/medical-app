@@ -27,6 +27,9 @@ let EtudiantController = class EtudiantController {
     findAll() {
         return this.etudiantService.findAll();
     }
+    paginate(page) {
+        return this.etudiantService.Paginate(+page);
+    }
     findOne(id) {
         return this.etudiantService.findOne(id);
     }
@@ -53,6 +56,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], EtudiantController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('paginate/:page'),
+    __param(0, (0, common_1.Param)('page')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], EtudiantController.prototype, "paginate", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

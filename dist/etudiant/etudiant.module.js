@@ -12,6 +12,7 @@ const etudiant_service_1 = require("./etudiant.service");
 const etudiant_controller_1 = require("./etudiant.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const etudiant_entity_1 = require("./entities/etudiant.entity");
+const paginate = require("mongoose-paginate-v2");
 let EtudiantModule = class EtudiantModule {
 };
 EtudiantModule = __decorate([
@@ -21,6 +22,7 @@ EtudiantModule = __decorate([
                 { name: etudiant_entity_1.Etudiant.name, useFactory: () => {
                         const schema = etudiant_entity_1.EtudiantSchema;
                         schema.plugin(require('mongoose-autopopulate'));
+                        schema.plugin(paginate);
                         return schema;
                     }, },
             ])

@@ -3,6 +3,7 @@ import { EtudiantService } from './etudiant.service';
 import { EtudiantController } from './etudiant.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Etudiant, EtudiantSchema } from './entities/etudiant.entity';
+import * as paginate from 'mongoose-paginate-v2';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { Etudiant, EtudiantSchema } from './entities/etudiant.entity';
       { name: Etudiant.name,useFactory: () => {
         const schema = EtudiantSchema;
         schema.plugin(require('mongoose-autopopulate'));
+        schema.plugin(paginate);
         return schema;
       }, },
     ])

@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EtudiantService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const mongoose_2 = require("mongoose");
 const etudiant_entity_1 = require("./entities/etudiant.entity");
 let EtudiantService = class EtudiantService {
     constructor(etudiantModel) {
@@ -28,6 +27,14 @@ let EtudiantService = class EtudiantService {
         }
         catch (error) {
             console.log(error);
+            throw new common_1.HttpException(error.message, 500);
+        }
+    }
+    async Paginate(page) {
+        try {
+            return await this.etudiantModel.paginate({}, { page: Number(page), limit: Number(2000) });
+        }
+        catch (error) {
             throw new common_1.HttpException(error.message, 500);
         }
     }
@@ -76,7 +83,7 @@ let EtudiantService = class EtudiantService {
 EtudiantService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(etudiant_entity_1.Etudiant.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [Object])
 ], EtudiantService);
 exports.EtudiantService = EtudiantService;
 //# sourceMappingURL=etudiant.service.js.map

@@ -25,6 +25,11 @@ export class EtudiantController {
     return this.etudiantService.findAll();
   }
 
+  @Get('paginate/:page')
+  paginate(@Param('page') page: string) {
+    return this.etudiantService.Paginate(+page);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.etudiantService.findOne(id);

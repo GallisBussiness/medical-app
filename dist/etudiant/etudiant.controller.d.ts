@@ -6,6 +6,7 @@ export declare class EtudiantController {
     constructor(etudiantService: EtudiantService);
     create(createEtudiantDto: CreateEtudiantDto): Promise<import("./entities/etudiant.entity").Etudiant>;
     findAll(): Promise<import("./entities/etudiant.entity").Etudiant[]>;
+    paginate(page: string): Promise<any>;
     findOne(id: string): Promise<import("./entities/etudiant.entity").Etudiant>;
     findById(searchDTO: {
         id: string;
