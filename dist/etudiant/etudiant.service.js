@@ -32,7 +32,7 @@ let EtudiantService = class EtudiantService {
     }
     async Paginate(page) {
         try {
-            return await this.etudiantModel.paginate({}, { page: Number(page), limit: Number(2000) });
+            return await this.etudiantModel.paginate({}, { page: Number(page), limit: Number(2000), sort: { createdAt: -1 } });
         }
         catch (error) {
             throw new common_1.HttpException(error.message, 500);
